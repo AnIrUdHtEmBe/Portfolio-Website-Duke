@@ -1,0 +1,1721 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/webicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anirudh — Full Stack Developer</title>
+    <meta
+      name="description"
+      content="Full Stack Developer & Designer. High-performance digital experiences built with precision."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ktm: "#FF6B00",
+              "ktm-hi": "#FF8C00",
+              "ktm-lo": "#CC5500",
+              d0: "#000000",
+              d1: "#0A0A0A",
+              d2: "#111111",
+              d3: "#1A1A1A",
+              d4: "#222222",
+            },
+            fontFamily: {
+              archivo: ["Archivo", "sans-serif"],
+              grotesk: ["Space Grotesk", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #000;
+        color: #fff;
+        font-family: "Space Grotesk", sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* ── Scrollbar ── */
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #ff6b00;
+        border-radius: 2px;
+      }
+
+      /* ── Glow effects ── */
+      .glow-text {
+        text-shadow:
+          0 0 24px rgba(255, 107, 0, 0.55),
+          0 0 60px rgba(255, 107, 0, 0.25);
+      }
+      .glow-box {
+        box-shadow:
+          0 0 28px rgba(255, 107, 0, 0.28),
+          0 0 60px rgba(255, 107, 0, 0.1);
+      }
+      .bike-glow {
+        filter: drop-shadow(0 0 36px rgba(255, 107, 0, 0.38))
+          drop-shadow(0 0 80px rgba(255, 107, 0, 0.18));
+      }
+
+      /* ── Gradients ── */
+      .hero-grad {
+        background: linear-gradient(
+          105deg,
+          #000 0%,
+          #000 38%,
+          rgba(0, 0, 0, 0.72) 60%,
+          rgba(0, 0, 0, 0.15) 80%,
+          transparent 100%
+        );
+      }
+      .fade-bottom {
+        background: linear-gradient(to bottom, transparent, #000 90%);
+      }
+      .fade-top {
+        background: linear-gradient(to top, transparent, #000 90%);
+      }
+
+      /* ── Grid overlay ── */
+      .grid-bg {
+        background-image:
+          linear-gradient(rgba(255, 107, 0, 0.028) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 107, 0, 0.028) 1px, transparent 1px);
+        background-size: 72px 72px;
+      }
+
+      /* ── Navbar ── */
+      #navbar {
+        transition:
+          background 0.3s,
+          border-color 0.3s,
+          backdrop-filter 0.3s;
+      }
+      #navbar.scrolled {
+        background: rgba(0, 0, 0, 0.88);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .nav-link {
+        position: relative;
+        color: #9ca3af;
+        transition: color 0.2s;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #ff6b00;
+        transition: width 0.2s;
+      }
+      .nav-link:hover {
+        color: #ff6b00;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* ── Hero text gradient clip ── */
+      .clip-orange {
+        background: linear-gradient(130deg, #fff 0%, #fff 45%, #ff6b00 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* ── Racing sweep shimmer ── */
+      .sweep {
+        position: relative;
+        overflow: hidden;
+      }
+      .sweep::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -60%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 107, 0, 0.055),
+          transparent
+        );
+        animation: sweep 5s linear infinite;
+      }
+      @keyframes sweep {
+        to {
+          left: 140%;
+        }
+      }
+
+      /* ── Section badge ── */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #ff6b00;
+      }
+      .badge-line {
+        height: 1px;
+        width: 2rem;
+        background: #ff6b00;
+      }
+
+      /* ── Section heading clamp ── */
+      .section-title {
+        font-family: "Archivo", sans-serif;
+        font-weight: 900;
+        line-height: 0.95;
+        font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+        color: #fff;
+      }
+
+      /* ── Fade-in on scroll ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      .d1 {
+        transition-delay: 0.1s;
+      }
+      .d2 {
+        transition-delay: 0.2s;
+      }
+      .d3 {
+        transition-delay: 0.3s;
+      }
+      .d4 {
+        transition-delay: 0.4s;
+      }
+      .d5 {
+        transition-delay: 0.5s;
+      }
+
+      /* ── Trait card ── */
+      .trait-card {
+        border: 1px solid #1f1f1f;
+        padding: 1rem;
+        transition: border-color 0.25s;
+      }
+      .trait-card:hover {
+        border-color: rgba(255, 107, 0, 0.45);
+      }
+
+      /* ── Skill tag ── */
+      .skill-tag {
+        border: 1px solid #222;
+        color: #9ca3af;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        padding: 0.35rem 0.75rem;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          border-color 0.2s;
+        cursor: default;
+      }
+      .skill-tag:hover {
+        background: #ff6b00;
+        color: #000;
+        border-color: #ff6b00;
+      }
+
+      /* ── Project card ── */
+      .proj-card {
+        border: 1px solid #1a1a1a;
+        background: #0a0a0a;
+        transition:
+          transform 0.28s ease,
+          box-shadow 0.28s ease,
+          border-color 0.28s ease;
+        cursor: pointer;
+      }
+      .proj-card:hover {
+        transform: translateY(-5px);
+        border-color: #ff6b00;
+        box-shadow: 0 18px 40px rgba(255, 107, 0, 0.14);
+      }
+      .proj-arrow {
+        transition:
+          color 0.2s,
+          transform 0.2s;
+        color: #4b5563;
+      }
+      .proj-card:hover .proj-arrow {
+        color: #ff6b00;
+        transform: translate(2px, -2px);
+      }
+
+      /* ── Bike gallery ── */
+      .bike-thumb {
+        border: 1px solid #1a1a1a;
+        background: #0a0a0a;
+        overflow: hidden;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          transform 0.2s;
+      }
+      .bike-thumb:hover {
+        border-color: rgba(255, 107, 0, 0.5);
+        box-shadow: 0 8px 24px rgba(255, 107, 0, 0.2);
+        transform: scale(1.02);
+      }
+
+      /* ── Form ── */
+      .f-input {
+        width: 100%;
+        background: #111;
+        border: 1px solid #2a2a2a;
+        color: #fff;
+        padding: 0.75rem 1rem;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.875rem;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .f-input:focus {
+        border-color: #ff6b00;
+        box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.12);
+      }
+      .f-input::placeholder {
+        color: #444;
+      }
+
+      /* ── Stat number ── */
+      .stat-num {
+        font-family: "Archivo", sans-serif;
+        font-weight: 900;
+        font-size: clamp(2.2rem, 5vw, 3.4rem);
+        color: #ff6b00;
+        line-height: 1;
+      }
+
+      /* ── Reduced motion ── */
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .sweep::before {
+          animation: none;
+        }
+        * {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="antialiased">
+    <!-- ╔══════════════════════════════════════════════════╗
+     ║  NAVBAR                                          ║
+     ╚══════════════════════════════════════════════════╝ -->
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 py-4"
+    >
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-3 group cursor-pointer">
+          <div
+            class="w-10 h-10 bg-ktm flex items-center justify-center font-archivo font-black text-black text-sm tracking-widest group-hover:bg-ktm-hi transition-colors duration-200"
+          >
+            AT
+          </div>
+          <span
+            class="font-archivo font-bold text-white tracking-[.18em] text-sm uppercase hidden sm:block"
+            >ANIRUDH</span
+          >
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a
+            href="#about"
+            class="nav-link font-grotesk text-xs tracking-[.14em] uppercase"
+            >About</a
+          >
+          <a
+            href="#skills"
+            class="nav-link font-grotesk text-xs tracking-[.14em] uppercase"
+            >Skills</a
+          >
+          <a
+            href="#projects"
+            class="nav-link font-grotesk text-xs tracking-[.14em] uppercase"
+            >Projects</a
+          >
+          <a
+            href="#gallery"
+            class="nav-link font-grotesk text-xs tracking-[.14em] uppercase"
+            >Garage</a
+          >
+          <a
+            href="#contact"
+            class="ml-2 px-5 py-2.5 bg-ktm text-black font-archivo font-bold text-xs uppercase tracking-widest hover:bg-ktm-hi transition-colors duration-200 cursor-pointer"
+          >
+            Let's Talk
+          </a>
+        </div>
+
+        <!-- Hamburger -->
+        <button
+          id="menu-btn"
+          class="md:hidden text-gray-400 hover:text-white transition-colors cursor-pointer"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <svg
+            id="ico-menu"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <svg
+            id="ico-close"
+            class="w-6 h-6 hidden"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile drawer -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden absolute top-full left-0 right-0 bg-black border-t border-gray-900 px-6 py-6 flex flex-col gap-5"
+      >
+        <a
+          href="#about"
+          class="text-gray-300 font-grotesk text-sm tracking-widest uppercase py-2 border-b border-gray-900"
+          >About</a
+        >
+        <a
+          href="#skills"
+          class="text-gray-300 font-grotesk text-sm tracking-widest uppercase py-2 border-b border-gray-900"
+          >Skills</a
+        >
+        <a
+          href="#projects"
+          class="text-gray-300 font-grotesk text-sm tracking-widest uppercase py-2 border-b border-gray-900"
+          >Projects</a
+        >
+        <a
+          href="#gallery"
+          class="text-gray-300 font-grotesk text-sm tracking-widest uppercase py-2 border-b border-gray-900"
+          >Garage</a
+        >
+        <a
+          href="#contact"
+          class="mt-2 px-5 py-3.5 bg-ktm text-black font-archivo font-bold text-xs uppercase tracking-widest text-center"
+          >Let's Talk</a
+        >
+      </div>
+    </nav>
+
+    <!-- ╔══════════════════════════════════════════════════╗
+     ║  HERO                                            ║
+     ╚══════════════════════════════════════════════════╝ -->
+    <section
+      id="hero"
+      class="relative min-h-screen flex items-center overflow-hidden"
+    >
+      <!-- Grid bg -->
+      <div class="absolute inset-0 bg-black grid-bg"></div>
+
+      <!-- Orange radial behind bike -->
+      <div
+        class="absolute right-0 top-1/2 -translate-y-1/2 w-[60%] h-[90%] pointer-events-none"
+        style="
+          background: radial-gradient(
+            ellipse at 70% 50%,
+            rgba(255, 107, 0, 0.13) 0%,
+            rgba(255, 107, 0, 0.04) 40%,
+            transparent 70%
+          );
+        "
+      ></div>
+
+      <!-- Bike image -->
+      <div
+        class="absolute right-0 bottom-0 w-full md:w-[62%] h-full flex items-end md:items-center justify-center md:justify-end pointer-events-none select-none"
+      >
+        <img
+          src="public/KTM-LEFT-FRONT.png"
+          alt="KTM Duke motorcycle side profile"
+          class="bike-glow w-full md:w-[96%] max-h-[85vh] object-contain object-bottom md:object-center"
+        />
+        <!-- Ground reflection -->
+        <div
+          class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-6 rounded-full"
+          style="
+            background: radial-gradient(
+              ellipse,
+              rgba(255, 107, 0, 0.28) 0%,
+              transparent 70%
+            );
+            filter: blur(8px);
+          "
+        ></div>
+      </div>
+
+      <!-- Left gradient veil -->
+      <div class="absolute inset-0 hero-grad pointer-events-none"></div>
+      <!-- Bottom fade -->
+      <div
+        class="absolute bottom-0 left-0 right-0 h-32 fade-bottom pointer-events-none"
+      ></div>
+
+      <!-- Content -->
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20"
+      >
+        <div class="max-w-lg">
+          <!-- Availability badge -->
+          <div
+            class="inline-flex items-center gap-2 px-3 py-2 border border-ktm/35 bg-ktm/6 mb-10 reveal"
+          >
+            <span class="w-2 h-2 rounded-full bg-ktm animate-pulse"></span>
+            <span
+              class="font-grotesk text-ktm text-xs tracking-[.18em] uppercase"
+              >Open to Work · 2026</span
+            >
+          </div>
+
+          <!-- Main heading -->
+          <h1
+            class="font-archivo font-black leading-none mb-7 reveal d1"
+            style="font-size: clamp(3.2rem, 9vw, 6.4rem)"
+          >
+            <span class="block text-white">FULL</span>
+            <span class="block clip-orange">STACK</span>
+            <span class="block text-white">DEV.</span>
+          </h1>
+
+          <!-- Subtext -->
+          <div class="flex items-start gap-4 mb-10 reveal d2">
+            <div class="h-0.5 w-10 bg-ktm mt-3 flex-shrink-0"></div>
+            <p class="font-grotesk text-gray-400 text-base leading-relaxed">
+              I build
+              <span class="text-white font-medium">high-performance</span>
+              digital experiences.<br />
+              Code. Design. Deliver.
+              <span class="text-ktm font-semibold">No excuses.</span>
+            </p>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap gap-4 reveal d3">
+            <a
+              href="#projects"
+              class="px-8 py-4 bg-ktm text-black font-archivo font-bold text-xs uppercase tracking-widest hover:bg-ktm-hi transition-colors duration-200 cursor-pointer glow-box"
+            >
+              View Projects
+            </a>
+            <a
+              href="#contact"
+              class="px-8 py-4 border border-gray-700 text-white font-archivo font-bold text-xs uppercase tracking-widest hover:border-ktm hover:text-ktm transition-colors duration-200 cursor-pointer"
+            >
+              Get In Touch
+            </a>
+          </div>
+
+          <!-- Socials -->
+          <div class="flex items-center gap-6 mt-12 reveal d4">
+            <a
+              href="#"
+              aria-label="GitHub"
+              class="text-gray-700 hover:text-white transition-colors duration-200 cursor-pointer"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              class="text-gray-700 hover:text-white transition-colors duration-200 cursor-pointer"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              aria-label="X / Twitter"
+              class="text-gray-700 hover:text-white transition-colors duration-200 cursor-pointer"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal d5"
+      >
+        <span
+          class="font-grotesk text-[.6rem] text-gray-700 tracking-[.22em] uppercase"
+          >Scroll</span
+        >
+        <div class="w-px h-10 bg-gradient-to-b from-ktm to-transparent"></div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════╗
+     ║  STATS                                           ║
+     ╚══════════════════════════════════════════════════╝ -->
+    <section
+      class="relative py-14 border-y border-gray-900 sweep overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="text-center reveal">
+            <div class="stat-num" data-target="25" data-suffix="+">0</div>
+            <div
+              class="text-gray-600 font-grotesk text-xs mt-2 tracking-widest uppercase"
+            >
+              Projects Built
+            </div>
+          </div>
+
+          <div class="text-center reveal d1">
+            <div class="stat-num" data-target="3" data-suffix="+">0</div>
+            <div
+              class="text-gray-600 font-grotesk text-xs mt-2 tracking-widest uppercase"
+            >
+              Years Exp.
+            </div>
+          </div>
+
+          <div class="text-center reveal d2">
+            <div class="stat-num" data-target="15" data-suffix="+">0</div>
+            <div
+              class="text-gray-600 font-grotesk text-xs mt-2 tracking-widest uppercase"
+            >
+              Happy Clients
+            </div>
+          </div>
+
+          <div class="text-center reveal d3">
+            <div class="stat-num" data-target="100" data-suffix="%">0</div>
+            <div
+              class="text-gray-600 font-grotesk text-xs mt-2 tracking-widest uppercase"
+            >
+              Commitment
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════╗
+     ║  ABOUT                                           ║
+     ╚══════════════════════════════════════════════════╝ -->
+    <section
+      id="about"
+      class="py-24 md:py-36"
+      style="
+        background: linear-gradient(180deg, #000 0%, #080808 50%, #000 100%);
+      "
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <!-- Bio -->
+          <div>
+            <div class="badge mb-6 reveal">
+              <span class="badge-line"></span>About Me
+            </div>
+
+            <h2 class="section-title mb-8 reveal d1">
+              BUILT TO<br /><span class="text-ktm">PERFORM.</span>
+            </h2>
+
+            <div class="space-y-4 reveal d2">
+              <p class="font-grotesk text-gray-400 text-base leading-relaxed">
+                I'm <span class="text-white font-medium">Anirudh</span> — a
+                full-stack developer and designer who builds things as fast and
+                precise as a KTM Duke at full throttle.
+              </p>
+              <p class="font-grotesk text-gray-400 text-base leading-relaxed">
+                I specialize in crafting
+                <span class="text-white font-medium"
+                  >high-performance web applications</span
+                >
+                that marry clean engineering with exceptional design. Every
+                pixel matters. Every millisecond counts.
+              </p>
+              <p class="font-grotesk text-gray-400 text-base leading-relaxed">
+                Off the keyboard, I'm on two wheels — the same philosophy
+                applies:
+                <span class="text-ktm font-medium"
+                  >precision, power, zero compromise.</span
+                >
+              </p>
+            </div>
+
+            <!-- Traits -->
+            <div class="grid grid-cols-2 gap-3 mt-10 reveal d3">
+              <div class="trait-card">
+                <div class="text-white font-archivo font-bold text-sm mb-1">
+                  Problem Solver
+                </div>
+                <div class="text-gray-600 font-grotesk text-xs leading-relaxed">
+                  Complex → elegant
+                </div>
+              </div>
+              <div class="trait-card">
+                <div class="text-white font-archivo font-bold text-sm mb-1">
+                  Performance First
+                </div>
+                <div class="text-gray-600 font-grotesk text-xs leading-relaxed">
+                  Speed is a feature
+                </div>
+              </div>
+              <div class="trait-card">
+                <div class="text-white font-archivo font-bold text-sm mb-1">
+                  Clean Code
+                </div>
+                <div class="text-gray-600 font-grotesk text-xs leading-relaxed">
+                  Readable · scalable
+                </div>
+              </div>
+              <div class="trait-card">
+                <div class="text-white font-archivo font-bold text-sm mb-1">
+                  Full Stack
+                </div>
+                <div class="text-gray-600 font-grotesk text-xs leading-relaxed">
+                  Front to deployment
+                </div>
+              </div>
+            </div>
+
+            <!-- Download CV -->
+            <a
+              href="/resume.pdf"
+              download
+              class="inline-flex items-center gap-3 mt-10 text-ktm font-archivo font-bold text-xs uppercase tracking-widest hover:text-ktm-hi transition-colors duration-200 cursor-pointer group reveal d4"
+            >
+              Download CV
+              <svg
+                class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Bike showcase -->
+          <div class="relative reveal d2">
+            <!-- Offset frame -->
+            <div
+              class="absolute -top-3 -right-3 w-full h-full border border-ktm/15 pointer-events-none"
+            ></div>
+
+            <div class="border border-gray-900 bg-d1">
+              <div class="relative overflow-hidden">
+                <img
+                  src="public/KTM-RIGHT-FRONT.png"
+                  alt="KTM Duke front quarter view"
+                  class="w-full h-72 md:h-96 object-contain p-6"
+                  style="filter: drop-shadow(0 0 18px rgba(255, 107, 0, 0.22))"
+                />
+                <!-- Inner vignette -->
+                <div
+                  class="absolute inset-0 pointer-events-none"
+                  style="
+                    background: radial-gradient(
+                      ellipse at 50% 50%,
+                      transparent 55%,
+                      rgba(0, 0, 0, 0.5) 100%
+                    );
+                  "
+                ></div>
+              </div>
+
+              <!-- Caption -->
+              <div
+                class="border-t border-gray-900 px-6 py-4 flex items-center justify-between"
+              >
+                <div>
+                  <div
+                    class="text-white font-archivo font-bold text-sm tracking-wider"
+                  >
+                    KTM DUKE
+                  </div>
+                  <div class="text-gray-600 font-grotesk text-xs mt-0.5">
+                    Precision. Power. Purpose.
+                  </div>
+                </div>
+                <div
+                  class="text-ktm font-archivo font-black text-3xl glow-text"
+                >
+                  390
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════╗
+     ║  SKILLS                                          ║
+     ╚══════════════════════════════════════════════════╝ -->
+    <section id="skills" class="py-24 md:py-36 bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="badge mb-6 reveal">
+          <span class="badge-line"></span>Tech Stack
+        </div>
+        <h2 class="section-title mb-16 reveal d1">MY TOOLKIT.</h2>
+
+        <div class="grid md:grid-cols-3 gap-10 md:gap-12">
+          <!-- Frontend -->
+          <div class="reveal">
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-9 h-9 border border-ktm/30 bg-ktm/8 flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-4 h-4 text-ktm"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <span
+                class="font-archivo font-bold text-white text-sm uppercase tracking-widest"
+                >Frontend</span
+              >
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag font-grotesk">React</span>
+              <span class="skill-tag font-grotesk">Next.js</span>
+              <span class="skill-tag font-grotesk">TypeScript</span>
+              <span class="skill-tag font-grotesk">Tailwind CSS</span>
+              <span class="skill-tag font-grotesk">Vue.js</span>
+              <span class="skill-tag font-grotesk">HTML5 / CSS3</span>
+              <span class="skill-tag font-grotesk">Framer Motion</span>
+              <span class="skill-tag font-grotesk">Three.js</span>
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div class="reveal d1">
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-9 h-9 border border-ktm/30 bg-ktm/8 flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-4 h-4 text-ktm"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+                  />
+                </svg>
+              </div>
+              <span
+                class="font-archivo font-bold text-white text-sm uppercase tracking-widest"
+                >Backend</span
+              >
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag font-grotesk">Node.js</span>
+              <span class="skill-tag font-grotesk">Python</span>
+              <span class="skill-tag font-grotesk">Express</span>
+              <span class="skill-tag font-grotesk">FastAPI</span>
+              <span class="skill-tag font-grotesk">PostgreSQL</span>
+              <span class="skill-tag font-grotesk">MongoDB</span>
+              <span class="skill-tag font-grotesk">REST APIs</span>
+              <span class="skill-tag font-grotesk">GraphQL</span>
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div class="reveal d2">
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-9 h-9 border border-ktm/30 bg-ktm/8 flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-4 h-4 text-ktm"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+              <span
+                class="font-archivo font-bold text-white text-sm uppercase tracking-widest"
+                >Tools & DevOps</span
+              >
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag font-grotesk">Git / GitHub</span>
+              <span class="skill-tag font-grotesk">Docker</span>
+              <span class="skill-tag font-grotesk">Vercel</span>
+              <span class="skill-tag font-grotesk">Figma</span>
+              <span class="skill-tag font-grotesk">Linux</span>
+              <span class="skill-tag font-grotesk">AWS</span>
+              <span class="skill-tag font-grotesk">CI / CD</span>
+              <span class="skill-tag font-grotesk">Supabase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════╗
+     ║  PROJECTS                                        ║
+     ╚══════════════════════════════════════════════════╝ -->
+    <section
+      id="projects"
+      class="py-24 md:py-36"
+      style="
+        background: linear-gradient(180deg, #000 0%, #080808 50%, #000 100%);
+      "
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header row -->
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16"
+        >
+          <div>
+            <div class="badge mb-6 reveal">
+              <span class="badge-line"></span>Selected Work
+            </div>
+            <h2 class="section-title reveal d1">PROJECTS.</h2>
+          </div>
+          <a
+            href="#"
+            class="hidden md:inline-flex items-center gap-2 text-gray-600 hover:text-ktm font-grotesk text-xs uppercase tracking-widest transition-colors duration-200 cursor-pointer reveal group"
+          >
+            View All
+            <svg
+              class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Featured (spans 2 cols) -->
+          <div class="lg:col-span-2 proj-card group reveal">
+            <div
+              class="relative h-52 overflow-hidden"
+              style="background: linear-gradient(135deg, #111 0%, #0a0a0a 100%)"
+            >
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    rgba(255, 107, 0, 0.1) 0%,
+                    transparent 55%
+                  );
+                "
+              ></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span
+                  class="font-archivo font-black text-[#1a1a1a] text-7xl uppercase tracking-widest select-none"
+                  >E-COM</span
+                >
+              </div>
+              <span
+                class="absolute top-4 right-4 px-2.5 py-1 bg-ktm text-black font-archivo font-bold text-xs uppercase tracking-wider"
+              >
+                Featured
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-archivo font-bold text-white text-xl">
+                  E-Commerce Platform
+                </h3>
+                <svg
+                  class="w-5 h-5 proj-arrow flex-shrink-0 ml-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </div>
+              <p
+                class="text-gray-500 font-grotesk text-sm leading-relaxed mb-5"
+              >
+                Full-stack e-commerce solution with real-time inventory, payment
+                integration, and an admin dashboard handling 10 k+ transactions
+                daily.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >Next.js</span
+                >
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >PostgreSQL</span
+                >
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >Stripe</span
+                >
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >Redis</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="proj-card group reveal d1">
+            <div
+              class="relative h-52 overflow-hidden"
+              style="background: linear-gradient(135deg, #111 0%, #0a0a0a 100%)"
+            >
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    rgba(255, 107, 0, 0.07) 0%,
+                    transparent 55%
+                  );
+                "
+              ></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span
+                  class="font-archivo font-black text-[#1a1a1a] text-6xl uppercase tracking-widest select-none"
+                  >API</span
+                >
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-archivo font-bold text-white text-lg">
+                  REST API Framework
+                </h3>
+                <svg
+                  class="w-5 h-5 proj-arrow flex-shrink-0 ml-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </div>
+              <p
+                class="text-gray-500 font-grotesk text-sm leading-relaxed mb-5"
+              >
+                High-performance REST API with JWT auth, rate limiting, and
+                auto-generated OpenAPI docs.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >FastAPI</span
+                >
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >Python</span
+                >
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >Docker</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="proj-card group reveal d2">
+            <div
+              class="relative h-52 overflow-hidden"
+              style="background: linear-gradient(135deg, #111 0%, #0a0a0a 100%)"
+            >
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    rgba(255, 107, 0, 0.07) 0%,
+                    transparent 55%
+                  );
+                "
+              ></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span
+                  class="font-archivo font-black text-[#1a1a1a] text-6xl uppercase tracking-widest select-none"
+                  >DASH</span
+                >
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-archivo font-bold text-white text-lg">
+                  Analytics Dashboard
+                </h3>
+                <svg
+                  class="w-5 h-5 proj-arrow flex-shrink-0 ml-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </div>
+              <p
+                class="text-gray-500 font-grotesk text-sm leading-relaxed mb-5"
+              >
+                Real-time analytics platform with custom charts, data pipeline,
+                and team collaboration tools.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >React</span
+                >
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >D3.js</span
+                >
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >Node.js</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="proj-card group reveal d3">
+            <div
+              class="relative h-52 overflow-hidden"
+              style="background: linear-gradient(135deg, #111 0%, #0a0a0a 100%)"
+            >
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    rgba(255, 107, 0, 0.07) 0%,
+                    transparent 55%
+                  );
+                "
+              ></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span
+                  class="font-archivo font-black text-[#1a1a1a] text-6xl uppercase tracking-widest select-none"
+                  >AI</span
+                >
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-archivo font-bold text-white text-lg">
+                  AI Chat Interface
+                </h3>
+                <svg
+                  class="w-5 h-5 proj-arrow flex-shrink-0 ml-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </div>
+              <p
+                class="text-gray-500 font-grotesk text-sm leading-relaxed mb-5"
+              >
+                Claude-powered AI assistant with streaming responses, persistent
+                memory, and multi-session support.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >Claude API</span
+                >
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >React</span
+                >
+                <span
+                  class="px-2.5 py-1 bg-black border border-gray-800 text-gray-500 font-grotesk text-xs"
+                  >WebSockets</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════╗
+     ║  GALLERY — THE GARAGE                            ║
+     ╚══════════════════════════════════════════════════╝ -->
+    <section
+      id="gallery"
+      class="py-24 md:py-36 bg-black relative overflow-hidden"
+    >
+      <!-- BG watermark -->
+      <div
+        class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+      >
+        <span
+          class="font-archivo font-black text-white/[.025] whitespace-nowrap"
+          style="font-size: clamp(7rem, 22vw, 18rem)"
+          >DUKE</span
+        >
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="badge mb-6 reveal">
+          <span class="badge-line"></span>The Garage
+        </div>
+        <h2 class="section-title mb-4 reveal d1">MY MACHINE.</h2>
+        <p
+          class="text-gray-500 font-grotesk text-base mb-14 max-w-md reveal d2"
+        >
+          The same energy that powers my code — raw precision, relentless
+          engineering, zero compromise.
+        </p>
+
+        <!-- Gallery grid -->
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
+          style="grid-auto-rows: 200px"
+        >
+          <!-- Large left (spans 2×2) -->
+          <div class="bike-thumb col-span-2 row-span-2 reveal">
+            <img
+              src="public/KTM-SIDE-RIGHT.png"
+              alt="KTM Duke side view"
+              class="w-full h-full object-contain p-4"
+              style="filter: drop-shadow(0 0 20px rgba(255, 107, 0, 0.2))"
+            />
+          </div>
+
+          <div class="bike-thumb reveal d1">
+            <img
+              src="public/KTM-LEFT-FRONT.png"
+              alt="KTM Duke left-front angle"
+              class="w-full h-full object-contain p-3"
+              style="filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.15))"
+            />
+          </div>
+
+          <div class="bike-thumb reveal d2">
+            <img
+              src="public/KTM-RIGHT-FRONT.png"
+              alt="KTM Duke right-front angle"
+              class="w-full h-full object-contain p-3"
+              style="filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.15))"
+            />
+          </div>
+
+          <div class="bike-thumb reveal d3">
+            <img
+              src="public/KTM-TOP-VIEW-RIGHT.png"
+              alt="KTM Duke top view"
+              class="w-full h-full object-contain p-3"
+              style="filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.15))"
+            />
+          </div>
+
+          <div class="bike-thumb reveal d4">
+            <img
+              src="public/KTM-DUKE-SIDE-4.png"
+              alt="KTM Duke alternate side"
+              class="w-full h-full object-contain p-3"
+              style="filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.15))"
+            />
+          </div>
+        </div>
+
+        <!-- Pull quote -->
+        <div class="mt-20 border-l-2 border-ktm pl-8 reveal">
+          <p
+            class="font-archivo font-black text-white leading-tight"
+            style="font-size: clamp(1.25rem, 3vw, 1.75rem)"
+          >
+            "Like riding at full throttle — I don't<br />
+            <span class="text-ktm">slow down</span> until it's perfect."
+          </p>
+          <p class="text-gray-600 font-grotesk text-sm mt-4">
+            — Anirudh · Developer & Rider
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════╗
+     ║  CONTACT                                         ║
+     ╚══════════════════════════════════════════════════╝ -->
+    <section
+      id="contact"
+      class="py-24 md:py-36 relative overflow-hidden"
+      style="
+        background: linear-gradient(180deg, #000 0%, #080808 50%, #000 100%);
+      "
+    >
+      <!-- Right glow -->
+      <div
+        class="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none"
+        style="
+          background: radial-gradient(
+            ellipse at 80% 50%,
+            rgba(255, 107, 0, 0.055) 0%,
+            transparent 60%
+          );
+        "
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-16 lg:gap-24">
+          <!-- Left: info -->
+          <div>
+            <div class="badge mb-6 reveal">
+              <span class="badge-line"></span>Get In Touch
+            </div>
+
+            <h2 class="section-title mb-8 reveal d1">
+              LET'S<br /><span class="text-ktm">RIDE.</span>
+            </h2>
+
+            <p
+              class="font-grotesk text-gray-400 text-base leading-relaxed mb-12 reveal d2"
+            >
+              Got a project in mind? I'm open to freelance work, full-time
+              roles, and interesting collaborations. Let's build something
+              exceptional together.
+            </p>
+
+            <!-- Contact details -->
+            <div class="space-y-6 reveal d3">
+              <a
+                href="mailto:hello@anirudh.dev"
+                class="flex items-center gap-4 group cursor-pointer"
+              >
+                <div
+                  class="w-10 h-10 border border-gray-800 flex items-center justify-center flex-shrink-0 group-hover:border-ktm transition-colors duration-200"
+                >
+                  <svg
+                    class="w-4 h-4 text-gray-500 group-hover:text-ktm transition-colors duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div
+                    class="text-gray-600 font-grotesk text-xs uppercase tracking-widest mb-0.5"
+                  >
+                    Email
+                  </div>
+                  <div
+                    class="text-white font-grotesk text-sm group-hover:text-ktm transition-colors duration-200"
+                  >
+                    hello@anirudh.dev
+                  </div>
+                </div>
+              </a>
+
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-10 h-10 border border-gray-800 flex items-center justify-center flex-shrink-0"
+                >
+                  <svg
+                    class="w-4 h-4 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div
+                    class="text-gray-600 font-grotesk text-xs uppercase tracking-widest mb-0.5"
+                  >
+                    Location
+                  </div>
+                  <div class="text-white font-grotesk text-sm">India</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Availability indicator -->
+            <div
+              class="mt-12 inline-flex items-center gap-3 px-4 py-3 border border-ktm/28 bg-ktm/5 reveal d4"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-green-400 animate-pulse"
+              ></span>
+              <span class="font-grotesk text-gray-300 text-sm"
+                >Available for new projects</span
+              >
+            </div>
+          </div>
+
+          <!-- Right: form -->
+          <div class="reveal d2">
+            <form
+              onsubmit="handleFormSubmit(event)"
+              novalidate
+              class="space-y-5"
+            >
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="f-name"
+                    class="block font-grotesk text-xs text-gray-600 uppercase tracking-widest mb-2"
+                    >Name</label
+                  >
+                  <input
+                    type="text"
+                    id="f-name"
+                    name="name"
+                    placeholder="Your name"
+                    class="f-input"
+                    required
+                    autocomplete="name"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="f-email"
+                    class="block font-grotesk text-xs text-gray-600 uppercase tracking-widest mb-2"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="f-email"
+                    name="email"
+                    placeholder="your@email.com"
+                    class="f-input"
+                    required
+                    autocomplete="email"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  for="f-subject"
+                  class="block font-grotesk text-xs text-gray-600 uppercase tracking-widest mb-2"
+                  >Subject</label
+                >
+                <input
+                  type="text"
+                  id="f-subject"
+                  name="subject"
+                  placeholder="What's the project?"
+                  class="f-input"
+                  autocomplete="off"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="f-message"
+                  class="block font-grotesk text-xs text-gray-600 uppercase tracking-widest mb-2"
+                  >Message</label
+                >
+                <textarea
+                  id="f-message"
+                  name="message"
+                  rows="5"
+                  placeholder="Tell me about your project…"
+                  class="f-input resize-none"
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full px-8 py-4 bg-ktm text-black font-archivo font-bold text-xs uppercase tracking-widest hover:bg-ktm-hi transition-colors duration-200 cursor-pointer glow-box"
+              >
+                Send Message
+              </button>
+
+              <!-- Feedback -->
+              <p
+                id="form-feedback"
+                class="hidden font-grotesk text-sm text-center text-green-400 pt-1"
+              >
+                Message sent! I'll get back to you soon.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════╗
+     ║  FOOTER                                          ║
+     ╚══════════════════════════════════════════════════╝ -->
+    <footer class="border-t border-gray-900 py-8 bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 bg-ktm flex items-center justify-center font-archivo font-black text-black text-xs"
+            >
+              AT
+            </div>
+            <span class="font-grotesk text-gray-600 text-sm"
+              >© 2026 Anirudh. All rights reserved.</span
+            >
+          </div>
+
+          <p class="font-grotesk text-gray-700 text-xs">
+            Built with <span class="text-ktm">passion</span> &amp;
+            <span class="text-ktm">caffeine</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ╔══════════════════════════════════════════════════╗
+     ║  SCRIPTS                                         ║
+     ╚══════════════════════════════════════════════════╝ -->
+    <script>
+      // ── Navbar on scroll ──────────────────────────────────
+      const navbar = document.getElementById("navbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          navbar.classList.toggle("scrolled", window.scrollY > 60);
+        },
+        { passive: true },
+      );
+
+      // ── Mobile menu toggle ────────────────────────────────
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const icoMenu = document.getElementById("ico-menu");
+      const icoClose = document.getElementById("ico-close");
+
+      menuBtn.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("hidden");
+        icoMenu.classList.toggle("hidden", !open);
+        icoClose.classList.toggle("hidden", open);
+        menuBtn.setAttribute("aria-expanded", String(!open));
+      });
+      mobileMenu.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          icoMenu.classList.remove("hidden");
+          icoClose.classList.add("hidden");
+        }),
+      );
+
+      // ── Scroll reveal ─────────────────────────────────────
+      const revealObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("in");
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObs.observe(el));
+
+      // ── Animated counters ─────────────────────────────────
+      const counterObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            const el = e.target;
+            const target = parseInt(el.dataset.target, 10);
+            const suffix = el.dataset.suffix || "";
+            const dur = 1400;
+            const step = target / (dur / 16);
+            let cur = 0;
+            const tick = setInterval(() => {
+              cur += step;
+              if (cur >= target) {
+                cur = target;
+                clearInterval(tick);
+              }
+              el.textContent = Math.floor(cur) + suffix;
+            }, 16);
+            counterObs.unobserve(el);
+          });
+        },
+        { threshold: 0.5 },
+      );
+      document
+        .querySelectorAll(".stat-num")
+        .forEach((el) => counterObs.observe(el));
+
+      // ── Form mock-submit ──────────────────────────────────
+      function handleFormSubmit(e) {
+        e.preventDefault();
+        const feedback = document.getElementById("form-feedback");
+        feedback.classList.remove("hidden");
+        e.target.reset();
+        setTimeout(() => feedback.classList.add("hidden"), 5000);
+      }
+    </script>
+  </body>
+</html>
