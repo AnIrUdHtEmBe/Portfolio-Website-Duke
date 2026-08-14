@@ -125,3 +125,4 @@ cypress/screenshots/
 # Generated files
 # =========================================================
 *.generated.*
+node_modules
