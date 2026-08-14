@@ -4,13 +4,18 @@ import { motion, useInView } from 'framer-motion'
 import { ExpandableCardGrid, type ExpandableCardItem } from '@/components/ui/ExpandableCard'
 import { CometCard } from '@/components/ui/CometCard'
 import Image from 'next/image'
+import KTM_DUKE_SIDE_4 from '../../public/KTM-DUKE-SIDE-4.png'
+import KTM_RIGHT_FRONT from '../../public/KTM-RIGHT-FRONT.png'
+import KTM_SIDE_RIGHT from '../../public/KTM-SIDE-RIGHT.png'
+import KTM_LEFT_FRONT from '../../public/KTM-LEFT-FRONT.png'
+import KTM_TOP_VIEW_RIGHT from '../../public/KTM-TOP-VIEW-RIGHT.png'
 
 const BIKE_CARDS: ExpandableCardItem[] = [
   {
     id: 'side-4',
     title: 'Duke — Signature Stance',
     subtitle: 'Side Profile View',
-    image: '/KTM-DUKE-SIDE-4.png',
+    image: KTM_DUKE_SIDE_4,
     category: 'Side View',
     description: 'The KTM 390 Duke in its most iconic pose. The chromoly steel trellis frame and underbelly exhaust system define its aggressive stance.',
     specs: [
@@ -26,7 +31,7 @@ const BIKE_CARDS: ExpandableCardItem[] = [
     id: 'right-front',
     title: 'Duke — Aggressive Angle',
     subtitle: 'Right Front 3/4',
-    image: '/KTM-RIGHT-FRONT.png',
+    image: KTM_RIGHT_FRONT,
     category: '3/4 Front',
     description: 'Full LED DRL headlight and the iconic KTM trellis frame on display. The 43mm inverted USD forks and 4-piston radial caliper mean serious stopping power.',
     specs: [
@@ -42,7 +47,7 @@ const BIKE_CARDS: ExpandableCardItem[] = [
     id: 'side-right',
     title: 'Duke — Side Right',
     subtitle: 'Lateral View',
-    image: '/KTM-SIDE-RIGHT.png',
+    image: KTM_SIDE_RIGHT,
     category: 'Side View',
     description: 'The 373.2cc single-cylinder liquid-cooled engine delivers 43.5 HP at 9,000 RPM. The WP Monoshock rear suspension handles every corner with precision.',
     specs: [
@@ -58,7 +63,7 @@ const BIKE_CARDS: ExpandableCardItem[] = [
     id: 'left-front',
     title: 'Duke — Left Approach',
     subtitle: 'Left Front 3/4',
-    image: '/KTM-LEFT-FRONT.png',
+    image: KTM_LEFT_FRONT,
     category: '3/4 Front',
     description: 'Launch Control, Traction Control, and Ride Modes — the 390 Duke punches well above its class with electronics borrowed from KTM\'s superbike lineup.',
     specs: [
@@ -112,7 +117,7 @@ export default function Gallery() {
               {/* Image */}
               <div className="relative min-h-[260px]">
                 <Image
-                  src="/KTM-TOP-VIEW-RIGHT.png"
+                  src={KTM_TOP_VIEW_RIGHT}
                   alt="KTM 390 Duke — Top View"
                   fill
                   className="object-contain p-6 drop-shadow-[0_0_30px_rgba(255,107,0,0.3)]"

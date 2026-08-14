@@ -3,11 +3,14 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Download } from 'lucide-react'
+import KTM_RIGHT_FRONT from '../../public/KTM-RIGHT-FRONT.png'
+import KTM_SIDE_RIGHT from '../../public/KTM-SIDE-RIGHT.png'
+import KTM_LEFT_FRONT from '../../public/KTM-LEFT-FRONT.png'
 
 const BIKE_IMAGES = [
-  { src: '/KTM-RIGHT-FRONT.png', label: 'Front Angle' },
-  { src: '/KTM-SIDE-RIGHT.png', label: 'Side Profile' },
-  { src: '/KTM-LEFT-FRONT.png', label: 'Head-On' },
+  { src: KTM_RIGHT_FRONT, label: 'Front Angle' },
+  { src: KTM_SIDE_RIGHT, label: 'Side Profile' },
+  { src: KTM_LEFT_FRONT, label: 'Head-On' },
 ]
 
 const WORDS = ['Software', 'Developer', '·', 'DevOPS', '·', 'FullStack', 'AI']

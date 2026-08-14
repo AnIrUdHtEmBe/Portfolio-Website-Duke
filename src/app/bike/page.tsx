@@ -5,6 +5,12 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, Zap, Gauge, Wind, Clock, Shield, Layers } from 'lucide-react'
 import { CometCard } from '@/components/ui/CometCard'
+import { StaticImageData } from 'next/image'
+import KTM_DUKE_SIDE_4 from '../../../public/KTM-DUKE-SIDE-4.png'
+import KTM_RIGHT_FRONT from '../../../public/KTM-RIGHT-FRONT.png'
+import KTM_SIDE_RIGHT from '../../../public/KTM-SIDE-RIGHT.png'
+import KTM_LEFT_FRONT from '../../../public/KTM-LEFT-FRONT.png'
+import KTM_TOP_VIEW_RIGHT from '../../../public/KTM-TOP-VIEW-RIGHT.png'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -16,7 +22,7 @@ interface Hotspot {
 }
 
 interface BikeView {
-  src: string
+  src: string | StaticImageData
   label: string
   shortLabel: string
   hotspots: Hotspot[]
@@ -66,7 +72,7 @@ const HOTSPOT_POSITIONS = {
 
 const BIKE_VIEWS: BikeView[] = [
   {
-    src: '/KTM-DUKE-SIDE-4.png',
+    src: KTM_DUKE_SIDE_4,
     label: 'Side Profile',
     shortLabel: 'Side',
     hotspots: [
@@ -77,7 +83,7 @@ const BIKE_VIEWS: BikeView[] = [
     ],
   },
   {
-    src: '/KTM-RIGHT-FRONT.png',
+    src: KTM_RIGHT_FRONT,
     label: 'Right Front',
     shortLabel: 'RF 3/4',
     hotspots: [
@@ -89,7 +95,7 @@ const BIKE_VIEWS: BikeView[] = [
     ],
   },
   {
-    src: '/KTM-SIDE-RIGHT.png',
+    src: KTM_SIDE_RIGHT,
     label: 'Side Right',
     shortLabel: 'Side R',
     hotspots: [
@@ -101,7 +107,7 @@ const BIKE_VIEWS: BikeView[] = [
     ],
   },
   {
-    src: '/KTM-LEFT-FRONT.png',
+    src: KTM_LEFT_FRONT,
     label: 'Left Front',
     shortLabel: 'LF 3/4',
     hotspots: [
@@ -111,7 +117,7 @@ const BIKE_VIEWS: BikeView[] = [
     ],
   },
   {
-    src: '/KTM-TOP-VIEW-RIGHT.png',
+    src: KTM_TOP_VIEW_RIGHT,
     label: 'Top View',
     shortLabel: 'Top',
     hotspots: [
@@ -340,7 +346,7 @@ export default function BikePage() {
         {/* Background: blurred SIDE-4 image */}
         <div className="absolute inset-0">
           <Image
-            src="/KTM-DUKE-SIDE-4.png"
+            src={KTM_DUKE_SIDE_4}
             alt="KTM 390 Duke background"
             fill
             className="object-cover object-center scale-110 blur-sm opacity-20"
@@ -557,7 +563,7 @@ export default function BikePage() {
                 {/* Image */}
                 <div className="relative min-h-[260px]">
                   <Image
-                    src="/KTM-TOP-VIEW-RIGHT.png"
+                    src={KTM_TOP_VIEW_RIGHT}
                     alt="KTM 390 Duke — Top View"
                     fill
                     className="object-contain p-6 drop-shadow-[0_0_30px_rgba(255,107,0,0.3)]"

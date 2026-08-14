@@ -3,6 +3,7 @@ import { useState, useEffect, useId } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
+import { StaticImageData } from 'next/image'
 
 export interface CardSpec {
   label: string
@@ -14,7 +15,7 @@ export interface ExpandableCardItem {
   id: string
   title: string
   subtitle: string
-  image: string
+  image: string | StaticImageData
   category: string
   specs: CardSpec[]
   description?: string
