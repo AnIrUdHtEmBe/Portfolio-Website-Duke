@@ -19,7 +19,7 @@ const BIKE_CARDS: ExpandableCardItem[] = [
     category: 'Side View',
     description: 'The KTM 390 Duke in its most iconic pose. The chromoly steel trellis frame and underbelly exhaust system define its aggressive stance.',
     specs: [
-      { label: 'Frame', value: 'Chromoly Steel Trellis' },
+      { label: 'Chassis', value: 'Chromoly Steel Trellis' },
       { label: 'Exhaust', value: 'Underbelly System' },
       { label: 'Seat Height', value: '820mm' },
       { label: 'Wet Weight', value: '163 kg' },
@@ -67,12 +67,12 @@ const BIKE_CARDS: ExpandableCardItem[] = [
     category: '3/4 Front',
     description: 'Launch Control, Traction Control, and Ride Modes — the 390 Duke punches well above its class with electronics borrowed from KTM\'s superbike lineup.',
     specs: [
-      { label: 'Electronics', value: 'ABS + Traction Control' },
+      { label: 'Electronics', value: 'Switchable ABS, Traction Control, Cornering ABS' },
       { label: 'Display', value: '5" Full-Color TFT' },
       { label: 'Ride Modes', value: 'Sport, Street, Rain' },
       { label: 'Launch Ctrl', value: 'Yes' },
       { label: '0–100', value: '5.5 seconds' },
-      { label: 'Gearbox', value: '6-Speed + Quickshifter' },
+      { label: 'Gearbox', value: '6-Speed + Bi-directional Quickshifter' },
     ],
   },
 ]

@@ -98,7 +98,7 @@ export default function Hero() {
               View Projects <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="/resume.pdf" download
+              href="/resume.pdf" download="AnirudhTembeResume.pdf"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 text-white/70 font-grotesk text-sm hover:border-white/30 hover:text-white transition-all duration-200"
             >
               <Download size={14} /> Resume

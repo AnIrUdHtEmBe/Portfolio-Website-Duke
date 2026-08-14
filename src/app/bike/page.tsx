@@ -51,16 +51,15 @@ const HOTSPOT_POSITIONS = {
     rearShock:  { x: '55%', y: '52%' },
   },
   sideRight: {
-    engine:     { x: '22%', y: '45%' },
-    rearWheel:  { x: '78%', y: '60%' },
-    frame:      { x: '60%', y: '30%' },
-    tftDisplay: { x: '38%', y: '20%' },
-    frontBrake: { x: '12%', y: '72%' },
+    tail:     { x: '22%', y: '45%' },
+    frontWheel:  { x: '82%', y: '60%' },
+    rearWheel: { x: '18%', y: '65%' },
   },
   leftFront: {
     brake:      { x: '33.75%', y: '69.75%' },
     engine:     { x: '65%', y: '70%' },
     header:     { x: '49%', y: '67%' },
+    levers:   { x: '37%', y: '28%' },
   },
   topView: {
     fuelTank:   { x: '45%', y: '30%' },
@@ -77,7 +76,7 @@ const BIKE_VIEWS: BikeView[] = [
     shortLabel: 'Side',
     hotspots: [
       { ...HOTSPOT_POSITIONS.side.engine, label: 'Engine', detail: '373.3cc LC Single Cylinder 43.5 HP 37 nm Torque DOHC Camshafts Bi-directional Quickshifter' },
-      { ...HOTSPOT_POSITIONS.side.exhaust, label: 'Exhaust', detail: 'Slip-on with integrated catalytic converter' },
+      { ...HOTSPOT_POSITIONS.side.exhaust, label: 'Exhaust', detail: 'Slip-on exhaust with catalytic converter' },
       { ...HOTSPOT_POSITIONS.side.rearShock, label: 'Rear Shock', detail: 'WP Apex Monoshock with Adjustable Preload' },
       { ...HOTSPOT_POSITIONS.side.tftDisplay, label: 'TFT Display', detail: '5" Full-Color TFT Dashboard' },
     ],
@@ -99,11 +98,9 @@ const BIKE_VIEWS: BikeView[] = [
     label: 'Side Right',
     shortLabel: 'Side R',
     hotspots: [
-      { ...HOTSPOT_POSITIONS.sideRight.engine, label: 'Engine', detail: '373.3cc LC Single Cylinder 43.5 HP 37 nm Torque DOHC Camshafts Bi-directional Quickshifter' },
+      { ...HOTSPOT_POSITIONS.sideRight.tail, label: 'Tail Tidy', detail: 'Integrated Tail Tidy' },
+      { ...HOTSPOT_POSITIONS.sideRight.frontWheel, label: 'Front Wheel', detail: '110/70 R17 Metzeler Tire' },
       { ...HOTSPOT_POSITIONS.sideRight.rearWheel, label: 'Rear Wheel', detail: '150/60 R17 Metzeler Tire' },
-      { ...HOTSPOT_POSITIONS.sideRight.frame, label: 'Frame', detail: 'Chromoly Steel Trellis' },
-      { ...HOTSPOT_POSITIONS.sideRight.tftDisplay, label: 'TFT Display', detail: '5" Full-Color TFT Dashboard' },
-      { ...HOTSPOT_POSITIONS.sideRight.frontBrake, label: 'Front Brake', detail: 'Bybre 320mm Disc with Cornering ABS' },
     ],
   },
   {
@@ -114,6 +111,7 @@ const BIKE_VIEWS: BikeView[] = [
       { ...HOTSPOT_POSITIONS.leftFront.brake, label: 'Front Brake', detail: 'Bybre 320mm Disc with Cornering ABS' },
       { ...HOTSPOT_POSITIONS.leftFront.engine, label: 'Engine', detail: '15-teeth Front Sprocket, 42-teeth Rear Sprocket, O-Rings Chain Drive' },
       { ...HOTSPOT_POSITIONS.leftFront.header, label: 'Header Pipe', detail: 'Stainless Steel Header Pipe equipped with O2 sensor' },
+      { ...HOTSPOT_POSITIONS.leftFront.levers, label: 'Levers', detail: 'Adjustable Brake Lever and Clutch Lever' },
     ],
   },
   {
@@ -121,7 +119,7 @@ const BIKE_VIEWS: BikeView[] = [
     label: 'Top View',
     shortLabel: 'Top',
     hotspots: [
-      { ...HOTSPOT_POSITIONS.topView.fuelTank, label: 'POV', detail: 'Dreamy POV' },
+      { ...HOTSPOT_POSITIONS.topView.fuelTank, label: 'POV', detail: '390!' },
       { ...HOTSPOT_POSITIONS.topView.exhaust, label: 'Tail Light', detail: 'Rival\'s best view' },
     ],
   },
@@ -137,9 +135,9 @@ const FULL_SPECS: SpecItem[] = [
   { label: 'Fuel Tank', value: '13.4 Litres', icon: <Gauge size={14} /> },
   { label: 'Front Brake', value: '320mm Disc, 4-Piston Bybre', icon: <Shield size={14} /> },
   { label: 'Rear Brake', value: '230mm Disc, Single Piston', icon: <Shield size={14} /> },
-  { label: 'Electronics', value: 'ABS, Traction Control, Ride Modes, Launch Control', icon: <Zap size={14} /> },
+  { label: 'Electronics', value: 'Switchable ABS, Traction Control, Cornering ABS', icon: <Zap size={14} /> },
   { label: 'Display', value: '5" Full-Color TFT', icon: <Layers size={14} /> },
-  { label: 'Frame', value: 'Chromoly Steel Trellis', icon: <Layers size={14} /> },
+  { label: 'Chassis', value: 'Chromoly Steel Trellis', icon: <Layers size={14} /> },
 ]
 
 // ── Sub-components ─────────────────────────────────────────────────────────────
