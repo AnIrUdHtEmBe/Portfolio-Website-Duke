@@ -636,7 +636,7 @@ That is exactly how I approach software engineering. Every system I build follow
                     software I write reflects that. Fast, focused, and engineered to deliver when it matters.
                   </p>
                   <p className="text-white/30 font-mono text-xs tracking-widest uppercase">
-                    — Anirudh A Tembe · 2020 KTM 390 Duke · Bangalore
+                    — Anirudh A Tembe · KTM 390 Duke · Bangalore
                   </p>
                 </div>
               </div>
